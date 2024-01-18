@@ -28,3 +28,4 @@ C:\Users\Provovic\Desktop\BTCloudWebApp\BTCloudWebApp\obj\Debug\net8.0\refint\BT
 C:\Users\Provovic\Desktop\BTCloudWebApp\BTCloudWebApp\obj\Debug\net8.0\BTCloudWebApp.pdb
 C:\Users\Provovic\Desktop\BTCloudWebApp\BTCloudWebApp\obj\Debug\net8.0\BTCloudWebApp.genruntimeconfig.cache
 C:\Users\Provovic\Desktop\BTCloudWebApp\BTCloudWebApp\obj\Debug\net8.0\ref\BTCloudWebApp.dll
+C:\Users\Provovic\Desktop\BTCloudWebApp\BTCloudWebApp\obj\Debug\net8.0\BTCloudWebApp.sourcelink.json
