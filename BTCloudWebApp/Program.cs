@@ -1,4 +1,17 @@
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+                      {
+                        builder .AllowAnyHeader()
+                                .AllowAnyOrigin()
+                                .AllowAnyMethod();
+                      });
+});
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -17,6 +30,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

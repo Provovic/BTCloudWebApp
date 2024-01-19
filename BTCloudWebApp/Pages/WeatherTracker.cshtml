@@ -5,8 +5,76 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>I have successfully created a Python program that utilizes the OpenWeather API, but I'm having an immense amount
-    of difficulties in bringing it to the front-end.
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+</head>
+<body>
 
-<p>I'll get it though! I typically always do 😏</p>
+    <div>
+        <form id="myForm">
+            <label for="getZipCode">Zip code:</label>
+            <input type="text" id="getZipCode" name="zipCode" value="" required />
+            <input type="button" value="Submit" class="submit" onclick="callAzureFunction()" />
+        </form>
+    </div>
+
+    <div id="weatherDataContainer"></div>
+
+<script>
+function callAzureFunction() {
+    var zipCode = document.getElementById('getZipCode').value;
+
+    var azureFunctionUrl = 'https://btcloud-get-weather.azurewebsites.net/api/zipCode?code=GMv-rjZaOSGrPgd5e-2xpiLVz6TMLV9Ap4OBLk8ybNL-AzFuWE2aGw==';
+
+    fetch(azureFunctionUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ zipCode: zipCode }),
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);  // Log jsonData
+        displayWeatherData(data);  // Call a function to display jsonDataWeather
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+function displayWeatherData(jsonDataWeather) {
+    var weatherDataContainer = document.getElementById('weatherDataContainer');
+    var parsedWeatherData = JSON.parse(jsonDataWeather);
+
+    // Modify this section to display jsonDataWeather on the screen
+    weatherDataContainer.innerHTML = `
+        <p>Temperature: ${parsedWeatherData.Tempature}</p>
+        <p>Feels Like: ${parsedWeatherData['Feels like']}</p>
+        <p>Humidity: ${parsedWeatherData.Humidity}</p>
+        <p>Wind Speed: ${parsedWeatherData['Wind Speed']}</p>
+        <p>Forecast Summary: ${parsedWeatherData['Forcasr Summary']}</p>
+    `;
+}
+</script>
+</body>
+</html>
+
+<br />
+<br />
+
+<h5>Details:</h5>
+<p>
+   I've implemented a Python Serverless function leveraging the power of Azure Functions. 
+   This function seamlessly integrates with the OpenWeather API, allowing for dynamic retrieval of 
+   weather information based on user input. Currently, I am in the process of creating a 
+   user-friendly mapping feature to visually represent the acquired data, providing an enhanced and 
+   interactive experience for users.
+</p>
+<p>Please keep in mind that I am not a front-end developer and am currently focused on making systems work.</p>
+
+<!-- https://btcloud-get-weather.azurewebsites.net/api/req?code=GMv-rjZaOSGrPgd5e-2xpiLVz6TMLV9Ap4OBLk8ybNL-AzFuWE2aGw== -->
