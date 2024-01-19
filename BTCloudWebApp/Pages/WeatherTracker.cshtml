@@ -20,6 +20,7 @@
             <input type="text" id="getZipCode" name="zipCode" value="" required />
             <input type="button" value="Submit" class="submit" onclick="callAzureFunction()" />
         </form>
+        <br />
     </div>
 
     <div id="weatherDataContainer"></div>
@@ -53,6 +54,7 @@ function displayWeatherData(jsonDataWeather) {
 
     // Modify this section to display jsonDataWeather on the screen
     weatherDataContainer.innerHTML = `
+        <p>Location: ${parsedWeatherData.Location}</p>
         <p>Temperature: ${parsedWeatherData.Tempature}</p>
         <p>Feels Like: ${parsedWeatherData['Feels like']}</p>
         <p>Humidity: ${parsedWeatherData.Humidity}</p>
@@ -67,13 +69,20 @@ function displayWeatherData(jsonDataWeather) {
 <br />
 <br />
 
+<h5>How to use:</h5>
+<p>Enter the ZIP code of the location from which you would like to retrieve the weather. 
+    This will display the city you're searching for, along with the temperature, what it feels like, 
+    humidity levels, wind speeds, and an overall summary of the day's weather.
+
+    Please note that the information provided is current, meaning you'll get the exact 
+    details about the weather at the time of submission.
+</p>
+
 <h5>Details:</h5>
 <p>
    I've implemented a Python Serverless function leveraging the power of Azure Functions. 
    This function seamlessly integrates with the OpenWeather API, allowing for dynamic retrieval of 
-   weather information based on user input. Currently, I am in the process of creating a 
-   user-friendly mapping feature to visually represent the acquired data, providing an enhanced and 
-   interactive experience for users.
+   weather information based on user input.
 </p>
 <p>Please keep in mind that I am not a front-end developer and am currently focused on making systems work.</p>
 
