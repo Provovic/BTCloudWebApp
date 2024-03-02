@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BTCloudWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97ac704b828e965b6a244d029c6e631b4418b729")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53b11fb97bd41982d6b28b8c877d0b1a58d30fdc")]
 [assembly: System.Reflection.AssemblyProductAttribute("BTCloudWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BTCloudWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

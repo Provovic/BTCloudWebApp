@@ -24,7 +24,7 @@ public class FileSharingAppModel : PageModel
             return Page();
         }
 
-        string connectionString = "DefaultEndpointsProtocol=https;AccountName=documentvaultbtcloud;AccountKey=VSae++lFkREzSvSty07SJZA+wQ3ExhWy7e83yZgr1v9TN+k9xmEKB+v5HUfoNr2rpAokyVc8AlCS+AStz41dzQ==;EndpointSuffix=core.windows.net";
+        string connectionString = "INSERT CONNECTION STRING HERE";
         BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
         
         string containerName = "uploadeddocuments";
