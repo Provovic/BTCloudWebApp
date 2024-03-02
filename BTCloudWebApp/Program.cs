@@ -1,20 +1,40 @@
-var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Azure.Identity;
+
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+
+
+
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", builder =>
-                      {
-                        builder .AllowAnyHeader()
-                                .AllowAnyOrigin()
-                                .AllowAnyMethod();
-                      });
+    options.AddPolicy(MyAllowSpecificOrigins, builder =>
+    {
+        builder.WithOrigins("https://localhost:7240")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
 });
-
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+
+// I NEED TO MAKE IT TO WHERE I CAN STORE THE CONNECTION STRING SECURELY
+
+
+
+
+
 
 var app = builder.Build();
 

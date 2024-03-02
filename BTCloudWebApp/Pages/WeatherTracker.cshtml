@@ -28,7 +28,6 @@
 <script>
 function callAzureFunction() {
     var zipCode = document.getElementById('getZipCode').value;
-
     var azureFunctionUrl = 'https://btcloud-get-weather.azurewebsites.net/api/zipCode?code=GMv-rjZaOSGrPgd5e-2xpiLVz6TMLV9Ap4OBLk8ybNL-AzFuWE2aGw==';
 
     fetch(azureFunctionUrl, {
