@@ -24,7 +24,18 @@ public class FileSharingAppModel : PageModel
             return Page();
         }
 
-        string connectionString = "INSERT CONNECTION STRING HERE";
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        string connectionString = _configuration.GetConnectionString("DocumentVaultConnection");
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+
+        if (string.IsNullOrEmpty(connectionString))
+        {
+            ModelState.AddModelError("file", "Connection string is missing or empty.");
+            return Page();
+        }      
+        
+     
+        
         BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
         
         string containerName = "uploadeddocuments";
