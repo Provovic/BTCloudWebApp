@@ -16,7 +16,7 @@ public class FileSharingAppModel : PageModel
         _configuration = configuration;
     }
 
-    public async Task<IActionResult> OnPostAsync(IFormFile file)
+    public async Task<IActionResult> OnPostAsync(IFormFile file, string email)
     {
         if (file == null || file.Length == 0)
         {
@@ -24,18 +24,22 @@ public class FileSharingAppModel : PageModel
             return Page();
         }
 
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+        if (string.IsNullOrEmpty(email))
+        {
+            ModelState.AddModelError("email", "Please provide an email address.");
+            return Page();
+        }
+
+        #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
         string connectionString = _configuration.GetConnectionString("DocumentVaultConnection");
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+        #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
         if (string.IsNullOrEmpty(connectionString))
         {
             ModelState.AddModelError("file", "Connection string is missing or empty.");
             return Page();
         }      
-        
-     
-        
+
         BlobServiceClient blobServiceClient = new BlobServiceClient(connectionString);
         
         string containerName = "uploadeddocuments";
@@ -49,6 +53,13 @@ public class FileSharingAppModel : PageModel
         {
             await blobClient.UploadAsync(stream, true);
         }
+        
+        // Set email as metadata
+        var metadata = new Dictionary<string, string>
+        {
+            { "SendToEmail", email }
+        };
+        await blobClient.SetMetadataAsync(metadata);
         
         return RedirectToPage("/FileSharingApp");
     }
