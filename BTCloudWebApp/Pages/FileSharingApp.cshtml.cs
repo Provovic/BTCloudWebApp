@@ -16,7 +16,7 @@ public class FileSharingAppModel : PageModel
         _configuration = configuration;
     }
 
-    public async Task<IActionResult> OnPostAsync(IFormFile file, string email, string? notes)
+    public async Task<IActionResult> OnPostAsync(IFormFile file, string email, string? userName, string? notes)
     {
         if (file == null || file.Length == 0)
         {
@@ -27,6 +27,12 @@ public class FileSharingAppModel : PageModel
         if (string.IsNullOrEmpty(email))
         {
             ModelState.AddModelError("email", "Please provide an email address.");
+            return Page();
+        }
+
+        if (string.IsNullOrEmpty(userName))
+        {
+            ModelState.AddModelError("userName", "Please provide a user name.");
             return Page();
         }
  
@@ -58,6 +64,7 @@ public class FileSharingAppModel : PageModel
         var metadata = new Dictionary<string, string>
         {
             { "SendToEmail", email },
+            { "userName", userName },
             { "UploadedOn", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") },
         };
 

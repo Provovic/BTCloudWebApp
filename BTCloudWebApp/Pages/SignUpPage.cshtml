@@ -1,0 +1,24 @@
+@page
+@namespace BTCloudWebApp.Pages
+@model SignUpPageModel
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="Username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" required>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="Email" required>
+    </div>
+    <button type="submit">Sign Up</button>
+</form>

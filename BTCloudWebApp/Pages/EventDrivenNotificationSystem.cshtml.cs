@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace YourNamespace
+namespace BTCloudWebApp.Pages
 {
     public class EventDrivenNotificationSystemModel : PageModel
     {
